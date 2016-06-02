@@ -18,19 +18,61 @@
 
 
 
-getTempPromise ('Philadelphia').then(successFunction, errorFunction);
+// getTempPromise ('Philadelphia').then(successFunction, errorFunction);
+//
+// function getTempPromise(location){
+//   return new Promise(function(resolve, reject){
+//     setTimeout(function(){                    //setTimeout - run inner function after 1 sec
+//       resolve({temp: 82, city: location});    //looks like we can only pass one param
+//       reject('City not found');               //into resolve & reject
+//     }, 1000)
+//   });
+// }
+//
+// function successFunction(data){
+//   console.log('The Temp is '+data.temp+' in ', data.city);
+// }
+//
+// function errorFunction(message){
+//   console.log(message)
+// }
 
-function getTempPromise(location){
+// addNumbers({a:7, b:3}).then(successFunction, errorFunction);
+//
+// function addNumbers(data){
+//   return new Promise(function(resolve, reject){
+//     if(typeof data.a==='number' && typeof data.b==='number'){
+//       resolve(data);
+//     }else{
+//       reject('One of the params is missing or not a number');
+//     }
+//   });
+// }
+//
+// function successFunction(successData){
+//   console.log(successData.a+successData.b);
+// }
+//
+// function errorFunction(message){
+//   console.log(message)
+// }
+
+addNumbers(7,5).then(successFunction, errorFunction);
+
+function addNumbers(a,b){
   return new Promise(function(resolve, reject){
-    resolve({temp: 82, city: location});    //looks like we can only pass one param
-    reject('City not found');               //into resolve & reject
+    if(typeof a==='number' && typeof b==='number'){
+      resolve({first: a, second: b});
+    }else{
+      reject('One of the params is missing or not a number');
+    }
   });
 }
 
-function successFunction(data){
-  console.log('The Temp is '+data.temp+' in ', data.city);
+function successFunction(successData){
+  console.log(successData.first+successData.second);
 }
 
-function errorFunction(message){
-  console.log(message)
+function errorFunction(errorData){
+  console.log(errorData)
 }
