@@ -1,3 +1,27 @@
+//Simple Example of a Promise
+
+
+addNumbers(7,8).then(successFunction, errorFunction);
+
+function addNumbers(a,b){
+  return new Promise(function(resolveFN, rejectFN){
+    if(typeof a==='number' && typeof b==='number'){
+      //or sum = a+b; resolve(sum);
+      resolveFN({first: a, second: b}); //returns success data object
+    }else{
+      rejectFN('One of the params is missing or not a number');  //returns error data object
+    }
+  });
+}
+
+function successFunction(successData){
+  console.log(successData.first+successData.second);
+}
+
+function errorFunction(errorData){
+  console.log(errorData)
+}
+
 //
 //
 // getTemperatureCallback('Philadelphia', function(err, temp){
@@ -56,23 +80,3 @@
 // function errorFunction(message){
 //   console.log(message)
 // }
-
-addNumbers(7,5).then(successFunction, errorFunction);
-
-function addNumbers(a,b){
-  return new Promise(function(resolve, reject){
-    if(typeof a==='number' && typeof b==='number'){
-      resolve({first: a, second: b});
-    }else{
-      reject('One of the params is missing or not a number');
-    }
-  });
-}
-
-function successFunction(successData){
-  console.log(successData.first+successData.second);
-}
-
-function errorFunction(errorData){
-  console.log(errorData)
-}
