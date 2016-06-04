@@ -4,16 +4,13 @@ var Weather = require('Weather');
 var About = require('About');
 var Examples = require('Examples');
 
-var Main = React.createClass({
-  render: function(){
-    return(
+var Main = (props)=> (
       <div>
         <Nav />
         <h2>Main Component</h2>
-        {this.props.children}
+        {props.children}
       </div>
       );
-  }
-});
+
 
 module.exports = Main;
