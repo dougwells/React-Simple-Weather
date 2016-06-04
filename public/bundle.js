@@ -24851,21 +24851,28 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      location: "Miami",
-	      temp: 88
+	      isLoading: false,
+	      error: false
 	    };
 	  },
 
 	  handleSearch: function handleSearch(location) {
 	    //make API call using location
 	    var that = this;
+
+	    debugger;
+	    this.setState({ isLoading: true });
+
 	    openWeatherMap.getTemp(location).then(function (temp) {
 	      that.setState({
 	        location: location,
-	        temp: temp
+	        temp: temp,
+	        isLoading: false,
+	        error: false
 	      });
 	    }, function (err) {
-	      console.log(err);
+	      that.setState({ isLoading: false, error: true, errorMessage: err });
+	      console.log(that.state.errorMessage);
 	    });
 	  },
 
@@ -24873,6 +24880,24 @@
 	    var _state = this.state;
 	    var location = _state.location;
 	    var temp = _state.temp;
+	    var isLoading = _state.isLoading;
+	    var error = _state.error;
+
+	    if (isLoading && !error) {
+	      var message = React.createElement(
+	        'h4',
+	        null,
+	        'Loading weather ...'
+	      );
+	    } else if (location && temp && !error) {
+	      var message = React.createElement(WeatherMessage, { location: location, temp: temp });
+	    } else if (error) {
+	      var message = React.createElement(
+	        'h4',
+	        null,
+	        'Error.  Are you sure you entered the correct city?'
+	      );
+	    }
 
 	    return React.createElement(
 	      'div',
@@ -24883,7 +24908,7 @@
 	        'Get Weather'
 	      ),
 	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
-	      React.createElement(WeatherMessage, { location: location, temp: temp })
+	      message
 	    );
 	  }
 	});
@@ -24973,6 +24998,7 @@
 	  getTemp: function getTemp(location) {
 	    var encodedLocation = encodeURI(location);
 	    var requestUrl = OPEN_WEATHER_MAP_URL + "&q=" + location;
+	    console.log(requestUrl);
 	    return axios.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
