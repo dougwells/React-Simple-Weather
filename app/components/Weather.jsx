@@ -16,7 +16,6 @@ var Weather = React.createClass({
     //make API call using location
     var that = this;
 
-    debugger;
     this.setState({isLoading: true});
 
     openWeatherMap.getTemp(location).then(function(temp){
@@ -41,7 +40,6 @@ var Weather = React.createClass({
     }else if(error){
       var message = <h4>Error.  Are you sure you entered the correct city?</h4>
     }
-
     return(
       <div>
         <h3>Get Weather</h3>
