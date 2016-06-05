@@ -7,8 +7,11 @@ var Examples = require('Examples');
 var Main = (props)=> (
       <div>
         <Nav />
-        <h2>Main Component</h2>
-        {props.children}
+        <div className="row">
+            <div className ='column medium-6 large-4 small-centered'>
+              {props.children}
+            </div>
+        </div>
       </div>
       );
 
