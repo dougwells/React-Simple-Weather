@@ -4,9 +4,14 @@ var ErrorModal = React.createClass({
 
   getDefaultProps: function(){
     return {
-      title: "Sorry, there has been an error",
+      title: "Sorry, there has been an error.",
       errorNote: "Unknown Error"
     };
+  },
+
+  propTypes: {
+    title: React.PropTypes.string,
+    message: React.PropTypes.string.isRequired
   },
 
   componentDidMount: function(){
@@ -16,11 +21,12 @@ var ErrorModal = React.createClass({
 
 
   render: function(){
+    var {title, errorNote} = this.props;
     return(
       <div>
         <div id="error-modal" className="reveal tiny text-center" data-reveal="">
-          <h4>{this.props.title}: {this.props.errorNote}</h4>
-          <p>some text</p>
+          <h4>{title}</h4>
+          <h5>{errorNote}</h5>
           <p>
             <button className="button hollow" data-close="">Okay</button>
           </p>
