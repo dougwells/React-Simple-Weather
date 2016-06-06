@@ -8,7 +8,7 @@ var Examples = (props)=>
     <ol>
       <li><Link to="/?location=Boston">Boston</Link></li>
       <li><Link to="/?location=Miami">Miami</Link></li>
-      <li><Link to="/?location=Denver">Cleveland</Link></li>
+      <li><Link to="/?location=Cleveland">Cleveland</Link></li>
       <li><Link to="/?location=Chicago">Chicago</Link></li>
       <li><Link to="/?location=Denver">Denver</Link></li>
       <li><Link to="/?location=Seattle">Seattle</Link></li>
