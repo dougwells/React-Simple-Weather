@@ -17,7 +17,7 @@ var Weather = React.createClass({
     //make API call using location
     var that = this;
 
-    this.setState({isLoading: true});
+    this.setState({isLoading: true, errorMessage: undefined});
 
     openWeatherMap.getTemp(location).then(function(temp){
       that.setState({
@@ -28,7 +28,6 @@ var Weather = React.createClass({
       });
     }, function(err){
       that.setState({isLoading: false, error: true, errorMessage: err.message})
-      console.dir(err);
     });
   },
 
@@ -39,7 +38,8 @@ var Weather = React.createClass({
     }else if (location && temp && !error){
       var message = <WeatherMessage location={location} temp={temp}/>
     }else if(error){
-      var message = <ErrorModal title="Error ... Bummer" errorNote={errorMessage}/>
+      console.dir(error, errorMessage)
+      var message = <ErrorModal errorNote={errorMessage}/>
     }
     return(
       <div>
