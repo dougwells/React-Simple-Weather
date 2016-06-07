@@ -1,11 +1,16 @@
 var React = require('react');
 var {Link, IndexLink} = require('react-router');
+// var handleSearch = require('Weather').handleSearch;
+// var runAlert = require('Test').runAlert;
+// console.dir(handleSearch);
+// console.dir(runAlert);
 
 var Nav = React.createClass({
 
   onSearch: function(event){
     event.preventDefault();
-    alert('Function under construction!')
+    // alert(this.refs.location.value);
+    // Weather.handleSearch(this.refs.location.value);
   },
 
   render: function(){
@@ -31,7 +36,7 @@ var Nav = React.createClass({
           <form onSubmit={this.onSearch}>
             <ul className="menu">
               <li>
-                <input type="search" placeholder="Search weather by city" />
+                <input type="search" ref="location" placeholder="Search weather by city" />
               </li>
               <li>
                 <input type="submit" className="button" value="Get Weather" />
