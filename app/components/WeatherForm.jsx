@@ -2,6 +2,7 @@ var React = require('react');
 
 var WeatherForm = React.createClass({
 
+
   onFormSubmit: function(event){
     event.preventDefault;
     var location = this.refs.location.value;
