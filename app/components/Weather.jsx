@@ -56,7 +56,6 @@ var Weather = React.createClass({
     }else if (location && temp && !error){
       var message = <WeatherMessage location={location} temp={temp}/>
     }else if(error){
-      console.dir(error, errorMessage)
       var message = <ErrorModal errorNote={errorMessage}/>
     }
     return(
